@@ -1,57 +1,30 @@
-/*Doxygenの使い方も一緒に勉強
-*ファイル名へのコメント
-* 
-/**
-* @file ファイル名
-* @brief 簡単な説明
-* @author 作成者
-* @date 作成日
-* @detail 詳細な説明
-*/
-
-/**
-* @file    main.cpp
-* @brief   エントリポイントやWINAPIの初期化
-* @author  Ryuga Sakakibara
-* @date    2021/09/15
-* @details none
-*/
 #include <Windows.h>
 
-/**
-* 関数へのコメント
-* @fn void function(int a, int b)
-* @brief 簡単な説明（～する関数）
-* @param[in] a(引数名) 引数の説明
-* @param[out] b(引数名) 引数の説明
-* @return bool 戻り値の説明
-* @details 詳細な説明
-*/
-
-/**
-* @fn int WinMain(HINSTANCE,HINSTANCE,LPSTR,int)
-* @brief WinAPIのエントリポイント
-* @param[in] インスタンスハンドル(何かを識別する数値)
-* @param[in] Win16の産物(基本NULL)
-* @param[in] LPSTR(メインアプリケーションウィンドウが最小・最大化、または
-*				   正常に表示されるかを示すフラグ)
-* @param[in] アプリケーションの初期表示方法
-* @return アプリケーションの終了コード　通常0
-*/
+//	↓呼び出し規約(Calling Convention)と呼ばれている。関数の呼び出し方式を表す
 int WINAPI WinMain(
-	HINSTANCE hInstance,
-	HINSTANCE hPrevInstance,
-	LPSTR lpCmdLine,
-	int nCmdShow)
+	HINSTANCE hInstance,		//	現在のインスタンスへのハンドル
+	HINSTANCE hPrevInstance,	//	以前のインスタンスへのハンドル
+	LPSTR lpCmdLine,			//	コマンドライン引数
+	int nCmdShow)				//	表示状態のオプション
 {
 	/**
-	* @fn MessageBox(HWND hWnd,LPCTSTR lpText,LPCTSTR lpCaption,UINT uType)
-	* @brief メッセージボックスを表示する関数(?)
-	* @param[in] 親ウィンドウの指定
-	* @param[in] メッセージボックスに表示する文字列
-	* @param[in] メッセージボックスのフレームに表示されるタイトル
-	* @param[in] メッセージボックスの形態を表す定数
-	* @return	 押されたボタンのフラグ
+	*	WinMain			Windowsプログラムのエントリポイント
+	*	hInstance		現在のアプリケーションを一意に示す識別値が入る
+	*	hPrevInstance	Win16時代の異物らしい。Win32では常にNULLが入る
+	*	lpCmdLine		コマンドライン引数が入る。コマンドライン引数ってなんぞ？
+	*	nCmdShow		ウィンドウの表示状態を表す値が入る→あとのウィンドウの作成で詳しく
+	*	return			WM_QUITメッセージのwParam値を指定する→あとのウィンドウプロシージャで詳しく
+	*/
+
+	/**
+	*	MessageBox		メッセージボックスを表示する関数
+	*	hWnd			オーナーウィンドウとするウィンドウを指定する
+	*					今回はNULLを設定。オーナーウィンドウを持たないメッセージボックスを作成
+	*	LPCTSTR			メッセージボックスのテキスト
+	*	LPCTSTR			メッセージボックスのキャプション
+	*	UType			メッセージボックスのタイプを表す整数値
+	*					ここではwinuser.hで定義されている値を使用することができる
+	*	
 	*/
 	MessageBox(NULL,
 			   TEXT("HelloWorld"),
